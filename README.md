@@ -1,7 +1,7 @@
 
 # htasmt
 hyper text assembly transfer
-[A screenshot of htasmt in lynx](/lynx.png?raw=true "htasmt in lynx")
+![A screenshot of htasmt in lynx](/lynx.png?raw=true "htasmt in lynx")
 
 # Compilation
 htasmt is a http fileserver written in x86\_64 assembly.
