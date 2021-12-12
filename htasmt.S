@@ -435,10 +435,6 @@ serve_dir:
 	mov rdx, dot_len
 	call cmp_str ; check for "."
 	je @@serve_dir_iter_jmp
-	mov rsi, dotdot
-	mov rdx, dotdot_len
-	call cmp_str ; check for ".."
-	je @@serve_dir_iter_jmp
 
 	mov rdi, r15
 	mov rsi, dirent_start1
@@ -590,6 +586,9 @@ complete_serve_file:
 ;  rdi: str_a
 ;  rsi: str_b
 ;  rdx: str_b_size
+; note
+;  if length(str_a) != length(str_b) then
+;   it will only compare the first str_b_size bytes of str_a/b
 cmp_str:
 	xor rax, rax ; rax=0
 @@cmp_str_iter:
@@ -1030,9 +1029,6 @@ serve_dir_body_end_len equ $ - serve_dir_body_end
 
 dot: db "."
 dot_len equ $ - dot
-
-dotdot: db ".."
-dotdot_len equ $ - dotdot
 
 slash: db "/"
 slash_len equ $ - slash
